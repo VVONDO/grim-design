@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>„COLD” — GRIM</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0A; --paper:#FFFFFF; --muted:#6B6B6B;
+    --line:#E4E4E4; --surface:#F4F4F4; --ok:#1F7A3E; --wait:#9A6B00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font:400 16px/24px Inter,system-ui,sans-serif}
+  .page{max-width:430px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .logo{font:400 20px/28px "Archivo Black",sans-serif;letter-spacing:.04em}
+  .cart{font:500 13px/18px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+  .gallery{background:var(--surface);aspect-ratio:1/1;overflow-x:auto;display:flex;scroll-snap-type:x mandatory}
+  .gallery img{width:100%;flex:0 0 100%;object-fit:cover;scroll-snap-align:start}
+  .dots{display:flex;gap:8px;justify-content:center;padding:12px 0}
+  .dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+  .dots i:first-child{background:var(--ink)}
+  .info{padding:0 16px 32px}
+  .stock{font:400 16px/24px Inter,sans-serif;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .stock .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted)}
+  h1{font:400 28px/32px "Archivo Black",sans-serif;text-transform:uppercase;margin-bottom:8px}
+  .price{font:600 20px/28px Inter,sans-serif;margin-bottom:24px}
+  .notify p{color:var(--muted);margin-bottom:12px}
+  input{width:100%;height:52px;border:1.5px solid var(--ink);padding:0 16px;font:400 16px Inter,sans-serif;border-radius:0;margin-bottom:8px}
+  .btn{width:100%;height:52px;background:var(--ink);color:var(--paper);border:0;border-radius:0;font:600 16px Inter,sans-serif}
+  .ship{display:flex;gap:12px;align-items:flex-start;padding:16px 0;margin-top:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ship svg{flex:0 0 20px}
+  .missing{color:var(--muted)}
+  dl{margin-top:24px}
+  dl div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+  dt{color:var(--muted)}
+  .return{margin-top:16px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <span class="logo">GRIM</span>
+    <span class="cart">Coș (0)</span>
+  </header>
+
+  <div class="gallery" aria-label="Poze „COLD”">
+    <img src="https://grimxo.com/cdn/shop/files/59688B6D-ED87-41C8-91FB-687C7CD8B48F.jpg?width=900" alt="Șapca „COLD”, față: plasă albă, broderie GRIM albă pe panou negru">
+    <img src="https://grimxo.com/cdn/shop/files/43EAD37F-E087-409F-82ED-93D5042360D8.jpg?width=900" alt="Șapca „COLD”, profil">
+    <img src="https://grimxo.com/cdn/shop/files/76B078EA-49F1-437E-987C-B9257D4DD915.jpg?width=900" alt="Șapca „COLD”, detaliu broderie">
+  </div>
+  <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <section class="info">
+    <div class="stock"><span class="dot"></span>Stoc epuizat · revine în stoc</div>
+    <h1>„COLD” White/Black</h1>
+    <div class="price">199 lei</div>
+
+    <form class="notify" onsubmit="event.preventDefault();this.innerHTML='<p>Gata. Îți scriem o singură dată, când revine „COLD”.</p>'">
+      <p>Lasă-ne emailul și îți scriem o singură dată, când revine. Nimic altceva.</p>
+      <input type="email" required placeholder="emailul tău" aria-label="Email">
+      <button class="btn" type="submit">Anunță-mă</button>
+    </form>
+
+    <div class="ship">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+      <span>Livrare prin curier · <span class="missing">[LIPSĂ: cost și zile]</span></span>
+    </div>
+
+    <dl>
+      <div><dt>Material</dt><dd class="missing">[LIPSĂ]</dd></div>
+      <div><dt>Închidere</dt><dd>reglabilă, spate cu plasă</dd></div>
+      <div><dt>Broderie</dt><dd>GRIM, fir alb</dd></div>
+      <div><dt>Mărime</dt><dd>una singură, reglabilă</dd></div>
+    </dl>
+    <p class="return">Retur în 14 zile. Transportul retur e al tău, cu excepția produselor defecte.</p>
+  </section>
+</div>
+</body>
+</html>
