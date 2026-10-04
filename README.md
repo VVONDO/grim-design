@@ -25,7 +25,7 @@ Temă: The Entrepreneurship Academy · 0205EE · Building with No-Code.
 
 1. `product-loop.md`
 2. `screens/product-page.html`, construit cu generate-design
-3. `reviews/01-product-page-review.md` (cu FAIL-uri) și `reviews/02-product-page-review-after-fix.md`
+3. `reviews/01-product-page-review.md` (4 FAIL) → `02-…-after-fix.md` (2 FAIL) → `03-…-final.md` (0 FAIL, plus o regulă nouă, mai strictă: C11)
 4. Propoziția:
 
 > În GRIM voi folosi **anunțul „a revenit în stoc” pe email, la care te abonezi tu**, și nu voi folosi niciodată **reduceri false și cronometre de presiune**, pentru că clienții noștri au 14–18 ani, cumpără din banii lor sau ai părinților și merită să decidă fără să fie împinși.

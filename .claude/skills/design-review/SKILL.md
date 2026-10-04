@@ -24,6 +24,7 @@ Judecă un ecran. **Nu îl rescrie, nu îl repară.** Doar verdict.
 | C8 | Fiecare spațiu (margin, padding, gap) e în pașii din specs | specs Spații |
 | C9 | Tot textul vizibil e în română, cu cuvintele din glossary | principles 7 |
 | C10 | Fiecare imagine are rând în LICENSES cu uz comercial confirmat | never 5 |
+| C11 | Suma totală (preț + livrare) e scrisă pe ecran, fără derulare, când produsul se poate cumpăra sau precomanda | day-one „Pentru cine”, never 6 |
 
 ## Format output (în `reviews/NN-<ecran>-review.md`)
 ```

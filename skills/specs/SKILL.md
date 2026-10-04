@@ -46,8 +46,9 @@ Stări: normal · apăsat (`opacity .85`) · dezactivat (nu există: un buton de
 - `Precomandă · livrare în N zile` (punct `--wait`) → buton „Precomandă”
 - `Stoc epuizat · revine în stoc` (punct gol, bordură `--muted`) → buton „Anunță-mă” + câmp email
 
-**Rând livrare** — iconiță Lucide `truck` 20px + text Corp: „Livrare prin curier în 1–3 zile lucrătoare · X lei”. **Valorile X și zilele: LIPSĂ — de cerut de la GRIM.**
+**Rând livrare** — iconiță Lucide `truck` 20px + text Corp: „Livrare prin curier în 1–2 zile · 25 lei”. (Confirmat de GRIM, 4 oct 2026.)
 
 **Galerie** — poze pătrate 1:1, fundal `--surface`, puncte de navigare 6px sub ea.
 
-**Detalii produs** — listă cu linie `--line` între rânduri: Material, Închidere, Broderie, Mărime. **Conținut: LIPSĂ în Shopify — de scris.**
+**Detalii produs** — listă cu linie `--line` între rânduri: Închidere, Broderie, Mărime.
+**Materialul nu apare pe site** (decizia GRIM, 4 oct 2026). Nu adăuga rândul „Material” și nu ghici materialul în texte.
