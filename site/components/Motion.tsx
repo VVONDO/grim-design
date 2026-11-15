@@ -18,6 +18,11 @@ export function Motion() {
       els.forEach((e) => e.classList.add("is-in"));
       return;
     }
+    // Anything already on screen is shown at once; the rest waits for the observer.
+    els.forEach((e) => {
+      if (e.getBoundingClientRect().top < window.innerHeight) e.classList.add("is-in");
+    });
+    document.documentElement.classList.add("motion");
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((en) => {
