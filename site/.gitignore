@@ -5,3 +5,5 @@ out
 next-env.d.ts
 .lighthouse
 out-build
+preview/dist
+preview/assets.generated.ts

@@ -23,6 +23,10 @@ npm start            # http://localhost:3000
 
 To open it on a phone on the same Wi-Fi: `npm start -- -H 0.0.0.0`, then open `http://<your-computer-ip>:3000`.
 
+## View it without a computer (single-file preview)
+
+`node preview/build.mjs` builds the whole site into one self-contained HTML file (`preview/dist/grim-preview.html`, about 4.7 MB). It inlines images, CSS and JS; pages become `#caps`, `#cap-snake-skin-red`, `#checkout`. It uses the same components as the real site, with small stand-ins for Next.js pieces (`preview/stubs/`). This is the version published as a private claude.ai page for viewing on an iPad. Fonts load from Google Fonts.
+
 ## What's on the site
 
 | Route | What it is |
