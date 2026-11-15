@@ -19,6 +19,8 @@ Temă: The Entrepreneurship Academy · 0205EE · Building with No-Code.
 | L2 | `skills/design-review/` | judecătorul: PASS / FAIL |
 | L2 | `build-order.md` | ordinea pentru ecranul de temă |
 | Rezultat | `screens/product-page.html` | ecranul construit |
+| Prototip | `site/` | site-ul prezentare GRIM (Next.js, local, fără plăți). Vezi `site/README.md` |
+| Rezultat | `screens/site-*.png` | capturi ale prototipului la 375px și 1440px |
 | Rezultat | `reviews/` | review-ul cu FAIL, apoi după reparare |
 
 ## Tema predată
