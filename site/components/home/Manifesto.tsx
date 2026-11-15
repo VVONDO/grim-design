@@ -1,3 +1,4 @@
+import { asset } from "@/lib/links";
 import Image from "next/image";
 
 const VALUES = [
@@ -6,7 +7,7 @@ const VALUES = [
     word: "Ownership",
     line: "Own your dark side.",
     body: "Everyone has one. Most people hide it. You put it on your head.",
-    img: "/assets/snake-skin-grey-black-cap-covered-face.webp",
+    img: asset("snake-skin-grey-black-cap-covered-face.webp"),
     alt: "Model hiding her face under a grey snakeskin GRIM cap, a snake along the brim",
   },
   {
@@ -14,7 +15,7 @@ const VALUES = [
     word: "Rebellion",
     line: "Rules belong to someone else.",
     body: "No permission asked. No apology after.",
-    img: "/assets/snake-skin-green-black-cap-worn-front.webp",
+    img: asset("snake-skin-green-black-cap-worn-front.webp"),
     alt: "Arm raised across the face, toxic green snakeskin GRIM cap and a green snake",
   },
   {
@@ -22,7 +23,7 @@ const VALUES = [
     word: "Uniqueness",
     line: "Not a cap. A statement.",
     body: "Made to be noticed. Built to be yours.",
-    img: "/assets/snake-skin-grey-black-cap-back-view.webp",
+    img: asset("snake-skin-grey-black-cap-back-view.webp"),
     alt: "Back view of a grey snakeskin GRIM cap, embroidered logo facing the camera, python on the shoulders",
   },
 ];

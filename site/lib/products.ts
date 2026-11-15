@@ -1,3 +1,4 @@
+import { asset } from "@/lib/links";
 // Demo catalogue. Prices are real list prices from the brief; STOCK IS DEMO DATA.
 // Replace `stock` with live inventory before launch: "Low stock" must only show when it's true.
 
@@ -21,7 +22,7 @@ export type Product = {
 export const LOW_STOCK = 6; // DEMO threshold
 
 const a = (file: string, alt: string, w = 1440, h = 1800): Img => ({
-  src: `/assets/${file}.webp`,
+  src: asset(`${file}.webp`),
   alt,
   w,
   h,
@@ -149,7 +150,7 @@ export const PRODUCTS: Product[] = [
     price: 219,
     stock: 30, // DEMO
     images: [a("og-lot-triple-black-cap-full-look", "Full look: triple black GRIM “LOT” cap with a washed black hoodie and shorts")],
-    swatch: { src: "/assets/og-lot-triple-black-cap-detail.webp", alt: "Close-up of the triple black GRIM “LOT” cap with black embroidered logo", w: 688, h: 688 },
+    swatch: { src: asset("og-lot-triple-black-cap-detail.webp"), alt: "Close-up of the triple black GRIM “LOT” cap with black embroidered logo", w: 688, h: 688 },
     hasPhoto: true,
   },
   {

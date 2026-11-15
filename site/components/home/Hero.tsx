@@ -1,5 +1,7 @@
 "use client";
 
+import { href, asset } from "@/lib/links";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -35,7 +37,7 @@ export function Hero() {
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         <div ref={img} className="absolute inset-0 origin-[50%_22%] will-change-transform">
           <Image
-            src="/assets/snake-skin-natural-black-cap-worn-front.webp"
+            src={asset("snake-skin-natural-black-cap-worn-front.webp")}
             alt="GRIM natural snakeskin trucker cap, head bowed, a python draped over black"
             fill
             priority
@@ -55,7 +57,7 @@ export function Hero() {
             shadow
           </h1>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Link href="/caps" className="btn-primary sm:min-w-[220px]">
+            <Link href={href.caps} className="btn-primary sm:min-w-[220px]">
               Shop now <Arrow size={18} />
             </Link>
             <span className="font-mono text-[13px] text-white/70">SNAKE SKIN · 249 RON</span>

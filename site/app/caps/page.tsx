@@ -1,3 +1,4 @@
+import { href } from "@/lib/links";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 function Card({ p, priority }: { p: Product; priority?: boolean }) {
   return (
     <li>
-      <Link href={`/caps/${p.slug}`} className="group block">
+      <Link href={href.cap(p.slug)} className="group block">
         <div className="relative aspect-[4/5] overflow-hidden bg-white/[0.03]">
           {p.hasPhoto ? (
             <Image src={p.images[0].src} alt={p.images[0].alt} fill priority={priority} sizes="(min-width: 1024px) 33vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />

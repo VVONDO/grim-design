@@ -1,5 +1,7 @@
 "use client";
 
+import { asset } from "@/lib/links";
+
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { loadGsap } from "../Motion";
@@ -39,7 +41,7 @@ export function DetailZoom() {
       <div className="relative mx-auto mt-10 aspect-square w-full max-w-[900px] overflow-hidden">
         <div ref={img} className="absolute inset-0 will-change-transform">
           <Image
-            src="/assets/snake-skin-natural-black-cap-detail.webp"
+            src={asset("snake-skin-natural-black-cap-detail.webp")}
             alt="Extreme close-up of the natural snakeskin GRIM cap: 3D embroidered logo, textured panel, black mesh back"
             fill
             sizes="(min-width: 900px) 900px, 100vw"

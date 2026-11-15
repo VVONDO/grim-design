@@ -1,5 +1,7 @@
 "use client";
 
+import { href } from "@/lib/links";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -54,7 +56,7 @@ export function BuyBox({ product, siblings }: { product: Product; siblings: Prod
               return (
                 <Link
                   key={s.slug}
-                  href={`/caps/${s.slug}`}
+                  href={href.cap(s.slug)}
                   scroll={false}
                   aria-current={current ? "true" : undefined}
                   aria-label={`${s.colorway}${stockState(s) === "out" ? ", sold out" : ""}`}

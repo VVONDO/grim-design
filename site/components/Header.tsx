@@ -1,5 +1,7 @@
 "use client";
 
+import { href } from "@/lib/links";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
@@ -26,13 +28,13 @@ export function Header() {
         Skip to content
       </a>
       <nav className="gutter mx-auto flex h-16 max-w-[1600px] items-center justify-between" aria-label="Main">
-        <Link href="/" aria-label="GRIM home" className="block">
+        <Link href={href.home} aria-label="GRIM home" className="block">
           <Logo className="h-9 w-auto md:h-10" />
         </Link>
         <div className="flex items-center gap-1 md:gap-6">
-          <Link href="/caps" className="link-underline hidden px-2 py-3 text-[15px] font-medium sm:block">Caps</Link>
-          <Link href="/#story" className="link-underline hidden px-2 py-3 text-[15px] font-medium sm:block">Story</Link>
-          <Link href="/caps" className="px-3 py-3 text-[15px] font-medium sm:hidden">Shop</Link>
+          <Link href={href.caps} className="link-underline hidden px-2 py-3 text-[15px] font-medium sm:block">Caps</Link>
+          <Link href={href.section("story")} className="link-underline hidden px-2 py-3 text-[15px] font-medium sm:block">Story</Link>
+          <Link href={href.caps} className="px-3 py-3 text-[15px] font-medium sm:hidden">Shop</Link>
           <button
             type="button"
             onClick={() => setOpen(true)}

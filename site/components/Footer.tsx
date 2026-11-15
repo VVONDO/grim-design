@@ -1,3 +1,4 @@
+import { href } from "@/lib/links";
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { Insta, Store } from "./Icons";
@@ -38,9 +39,9 @@ export function Footer() {
         <div>
           <h2 className="eyebrow">Shop</h2>
           <ul className="mt-4 space-y-3 text-[15px]">
-            <li><Link className="link-underline" href="/caps">All caps</Link></li>
-            <li><Link className="link-underline" href="/#snake-skin">SNAKE SKIN</Link></li>
-            <li><Link className="link-underline" href="/#og">OG</Link></li>
+            <li><Link className="link-underline" href={href.caps}>All caps</Link></li>
+            <li><Link className="link-underline" href={href.section("snake-skin")}>SNAKE SKIN</Link></li>
+            <li><Link className="link-underline" href={href.section("og")}>OG</Link></li>
             <li className="text-bone">Contact: {SITE.email}</li>
           </ul>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { href } from "@/lib/links";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -46,7 +48,7 @@ export function CartDrawer() {
             <div className="py-16 text-center">
               <p className="display text-[40px]">Empty.</p>
               <p className="mt-3 text-bone">Nothing on your head yet.</p>
-              <Link href="/caps" onClick={() => setOpen(false)} className="btn-ghost mt-8">See the caps</Link>
+              <Link href={href.caps} onClick={() => setOpen(false)} className="btn-ghost mt-8">See the caps</Link>
             </div>
           ) : (
             <ul className="divide-y divide-white/10">
@@ -60,7 +62,7 @@ export function CartDrawer() {
                     )}
                   </div>
                   <div className="flex flex-1 flex-col">
-                    <Link href={`/caps/${slug}`} onClick={() => setOpen(false)} className="font-semibold leading-tight">
+                    <Link href={href.cap(slug)} onClick={() => setOpen(false)} className="font-semibold leading-tight">
                       {product.title}
                     </Link>
                     <span className="mt-1 font-mono text-[13px] text-white/70">{fmtRON(product.price)}</span>
@@ -93,7 +95,7 @@ export function CartDrawer() {
               <span className="text-bone">Subtotal</span>
               <span className="font-mono text-lg">{fmtRON(subtotal)}</span>
             </div>
-            <Link href="/checkout" onClick={() => setOpen(false)} className="btn-primary w-full">
+            <Link href={href.checkout} onClick={() => setOpen(false)} className="btn-primary w-full">
               Checkout
             </Link>
             <p className="text-center font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">Prototype · no real payments</p>

@@ -1,3 +1,4 @@
+import { asset } from "@/lib/links";
 import Image from "next/image";
 import { SITE } from "@/lib/site";
 import { TEASERS } from "@/lib/products";
@@ -31,7 +32,7 @@ export function Community() {
           {GRID.map(([f, alt]) => (
             <li key={f} className="relative aspect-square overflow-hidden bg-white/5">
               <a href={SITE.instagram} rel="noopener" aria-label={`${alt}, on Instagram`} className="group block h-full">
-                <Image src={`/assets/${f}.webp`} alt={alt} fill sizes="(min-width: 768px) 33vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src={asset(`${f}.webp`)} alt={alt} fill sizes="(min-width: 768px) 33vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
               </a>
             </li>
           ))}
@@ -55,7 +56,7 @@ export function Community() {
         <h2 id="more-title" className="display mt-4 text-[12vw] md:text-[5vw]">Not just caps.</h2>
         <div className="mt-8 grid gap-2 md:grid-cols-[1.2fr_1fr]">
           <div className="relative aspect-[4/5] overflow-hidden md:row-span-2 md:aspect-auto">
-            <Image src="/assets/og-lot-triple-black-cap-full-look.webp" alt="Full GRIM look: washed black hoodie and shorts with a triple black cap" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
+            <Image src={asset("og-lot-triple-black-cap-full-look.webp")} alt="Full GRIM look: washed black hoodie and shorts with a triple black cap" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
           </div>
           <ul className="grid grid-cols-2 gap-2">
             {TEASERS.map((t) => (

@@ -1,3 +1,4 @@
+import { href } from "@/lib/links";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,7 +60,7 @@ export default async function ProductPage({ params }: Props) {
               <li key={c.path} className="flex gap-2">
                 {k < crumbs.length - 1 ? (
                   <>
-                    <Link href={c.path} className="link-underline">{c.name}</Link>
+                    <Link href={k === 0 ? href.home : href.caps} className="link-underline">{c.name}</Link>
                     <span aria-hidden>/</span>
                   </>
                 ) : (
@@ -132,7 +133,7 @@ export default async function ProductPage({ params }: Props) {
         <ul className="mt-8 grid grid-cols-2 gap-2 md:grid-cols-4">
           {others.map((o) => (
             <li key={o.slug}>
-              <Link href={`/caps/${o.slug}`} className="group block">
+              <Link href={href.cap(o.slug)} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image src={o.images[0].src} alt={o.images[0].alt} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>

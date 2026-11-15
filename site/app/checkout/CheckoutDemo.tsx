@@ -1,5 +1,7 @@
 "use client";
 
+import { href } from "@/lib/links";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -21,7 +23,7 @@ export function CheckoutDemo() {
         <p className="eyebrow">Demo order</p>
         <h1 className="display mt-4 text-[18vw] md:text-[9vw]">It&apos;s yours.</h1>
         <p className="body-copy mt-4 max-w-[520px]">This is a prototype. No order was created and no payment was taken. Your demo cart has been cleared.</p>
-        <Link href="/" className="btn-ghost mt-10 self-start">Back to GRIM</Link>
+        <Link href={href.home} className="btn-ghost mt-10 self-start">Back to GRIM</Link>
       </div>
     );
 
@@ -36,7 +38,7 @@ export function CheckoutDemo() {
       {lines.length === 0 ? (
         <div className="mt-12">
           <p className="text-bone">Your cart is empty.</p>
-          <Link href="/caps" className="btn-ghost mt-6">See the caps</Link>
+          <Link href={href.caps} className="btn-ghost mt-6">See the caps</Link>
         </div>
       ) : (
         <div className="mt-12 grid gap-12 md:grid-cols-[1.2fr_1fr]">

@@ -1,5 +1,7 @@
 "use client";
 
+import { href } from "@/lib/links";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -109,7 +111,7 @@ export function ColorStage({ products, scrollDriven = false, label }: { products
               ))}
             </div>
 
-            <Link href={`/caps/${p.slug}`} className="btn-ghost mt-6 self-start">
+            <Link href={href.cap(p.slug)} className="btn-ghost mt-6 self-start">
               View {p.colorway} <Arrow size={18} />
             </Link>
           </div>
