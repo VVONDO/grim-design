@@ -11,8 +11,19 @@ import { useCart } from "../CartProvider";
 import { StockBadge } from "../StockBadge";
 import { ShippingInfo } from "../ShippingInfo";
 import { EmailForm } from "../EmailForm";
+import { flyToCart } from "./fly";
 
-export function BuyBox({ product, siblings }: { product: Product; siblings: Product[] }) {
+type Props = {
+  product: Product;
+  siblings: Product[];
+  /** Desktop 3D layout: no spec list, swatches swap the colour in place. */
+  compact?: boolean;
+  onSelect?: (slug: string) => void;
+  /** Called when "Add to cart" is pressed (lets the 3D viewer react). */
+  onAdded?: () => void;
+};
+
+export function BuyBox({ product, siblings, compact = false, onSelect, onAdded }: Props) {
   const { add } = useCart();
   const state = stockState(product);
   const btn = useRef<HTMLDivElement>(null);
@@ -27,10 +38,13 @@ export function BuyBox({ product, siblings }: { product: Product; siblings: Prod
     return () => io.disconnect();
   }, []);
 
-  const onAdd = () => {
-    add(product.slug, 1);
+  const onAdd = async () => {
     setAdded(true);
     setTimeout(() => setAdded(false), 1800);
+    onAdded?.();
+    // The cap shrinks and flies into the cart icon, then the cart opens.
+    if (product.hasPhoto) await flyToCart(product.swatch.src);
+    add(product.slug, 1);
   };
 
   return (
@@ -40,7 +54,7 @@ export function BuyBox({ product, siblings }: { product: Product; siblings: Prod
         <StockBadge product={product} large />
         {state === "low" && <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-white/60">demo data</span>}
       </div>
-      <h1 className="display mt-4 text-[15vw] md:text-[5vw]">
+      <h1 className={`display mt-4 text-[15vw] ${compact ? "md:text-[4.2vw]" : "md:text-[5vw]"}`}>
         <span className="block text-[0.45em] text-white/70">{product.name}</span>
         {product.colorway}
       </h1>
@@ -53,21 +67,25 @@ export function BuyBox({ product, siblings }: { product: Product; siblings: Prod
           <div className="mt-3 flex flex-wrap gap-2">
             {siblings.map((s) => {
               const current = s.slug === product.slug;
-              return (
-                <Link
-                  key={s.slug}
-                  href={href.cap(s.slug)}
-                  scroll={false}
-                  aria-current={current ? "true" : undefined}
-                  aria-label={`${s.colorway}${stockState(s) === "out" ? ", sold out" : ""}`}
-                  className={`relative h-14 w-14 overflow-hidden rounded-full border-2 ${current ? "border-white" : "border-transparent opacity-75 hover:opacity-100"}`}
-                >
+              const cls = `relative h-14 w-14 overflow-hidden rounded-full border-2 transition ${current ? "border-white" : "border-transparent opacity-75 hover:opacity-100"}`;
+              const label = `${s.colorway}${stockState(s) === "out" ? ", sold out" : ""}`;
+              const face = (
+                <>
                   {s.hasPhoto ? (
                     <Image src={s.swatch.src} alt="" fill sizes="56px" className="scale-[1.6] object-cover object-[50%_30%]" />
                   ) : (
                     <span className="absolute inset-0 flex items-center justify-center bg-white/10 font-mono text-[10px]">{s.name.replace(/[“”]/g, "").slice(0, 3)}</span>
                   )}
                   {stockState(s) === "out" && <span className="absolute inset-0 bg-[linear-gradient(135deg,transparent_47%,rgba(255,255,255,.8)_48%,rgba(255,255,255,.8)_52%,transparent_53%)]" aria-hidden />}
+                </>
+              );
+              return onSelect ? (
+                <button key={s.slug} type="button" onClick={() => onSelect(s.slug)} aria-pressed={current} aria-label={label} className={cls}>
+                  {face}
+                </button>
+              ) : (
+                <Link key={s.slug} href={href.cap(s.slug)} scroll={false} aria-current={current ? "true" : undefined} aria-label={label} className={cls}>
+                  {face}
                 </Link>
               );
             })}
@@ -93,7 +111,7 @@ export function BuyBox({ product, siblings }: { product: Product; siblings: Prod
         <ShippingInfo />
       </div>
 
-      <dl className="mt-8 divide-y divide-white/10 border-y border-white/10 text-[15px]">
+      <dl className={`mt-8 divide-y divide-white/10 border-y border-white/10 text-[15px] ${compact ? "hidden" : ""}`}>
         {[
           ["Size", "One size · adjustable strap"],
           ["Logo", "3D embroidered GRIM logo"],

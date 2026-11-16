@@ -24,6 +24,8 @@ const swap = {
   "next/image": join(root, "preview/stubs/next-image.tsx"),
   "next/link": join(root, "preview/stubs/next-link.tsx"),
   "next/navigation": join(root, "preview/stubs/next-navigation.ts"),
+  "next/dynamic": join(root, "preview/stubs/next-dynamic.tsx"),
+  "@/lib/server-assets": join(root, "preview/stubs/server-assets.ts"),
 };
 const result = await build({
   entryPoints: [join(root, "preview/App.tsx")],
@@ -40,7 +42,7 @@ const result = await build({
   plugins: [{
     name: "swap-next",
     setup(b) {
-      b.onResolve({ filter: /^(@\/lib\/links|next\/image|next\/link|next\/navigation)$/ }, (a) => ({ path: swap[a.path] }));
+      b.onResolve({ filter: /^(@\/lib\/links|@\/lib\/server-assets|next\/image|next\/link|next\/navigation|next\/dynamic)$/ }, (a) => ({ path: swap[a.path] }));
     },
   }],
 });

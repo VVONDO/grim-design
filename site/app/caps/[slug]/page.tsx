@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getProduct, PRODUCTS } from "@/lib/products";
 import { fmtRON } from "@/lib/site";
 import { ProductView } from "@/components/product/ProductView";
+import { capModelUrl } from "@/lib/server-assets";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -31,5 +32,5 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
-  return <ProductView product={product} />;
+  return <ProductView product={product} modelUrl={capModelUrl()} />;
 }

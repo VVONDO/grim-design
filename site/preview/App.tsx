@@ -1,4 +1,4 @@
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { createRoot } from "react-dom/client";
 import Home from "@/app/page";
 import CapsPage from "@/app/caps/page";
@@ -29,11 +29,14 @@ function View({ route }: { route: string }) {
 function App() {
   const route = useSyncExternalStore(sub, routeOf, () => "home");
   const page = HOME_SECTIONS.has(route) ? "home" : route;
+  const prev = useRef(route);
   useEffect(() => {
+    const swap = prev.current.startsWith("cap-") && route.startsWith("cap-"); // colour swap: stay put
+    prev.current = route;
     const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number | HTMLElement, o?: object) => void } }).__lenis;
     if (HOME_SECTIONS.has(route)) {
       requestAnimationFrame(() => document.getElementById(route)?.scrollIntoView());
-    } else {
+    } else if (!swap) {
       if (lenis) lenis.scrollTo(0, { immediate: true });
       window.scrollTo(0, 0);
     }
@@ -44,7 +47,7 @@ function App() {
   return (
     <CartProvider>
       <Header />
-      <main id="main" key={page} className="page-in">
+      <main id="main" key={page.startsWith("cap-") ? "cap" : page} className="page-in">
         <View route={page} />
       </main>
       <Footer />

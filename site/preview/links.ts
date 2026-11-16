@@ -8,3 +8,6 @@ export const href = {
   checkout: "#checkout",
 };
 export const asset = (file: string) => ASSETS[file] ?? "";
+export const replaceCap = (slug: string) => {
+  if (location.hash !== `#cap-${slug}`) location.replace(`#cap-${slug}`);
+};

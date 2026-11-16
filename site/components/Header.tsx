@@ -38,6 +38,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen(true)}
+            data-cart-target
             className="relative flex h-11 w-11 items-center justify-center"
             aria-label={`Open cart, ${count} item${count === 1 ? "" : "s"}`}
           >

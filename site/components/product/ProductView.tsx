@@ -1,7 +1,10 @@
-import { href } from "@/lib/links";
+"use client";
+
+import { useEffect, useState } from "react";
+import { href, replaceCap } from "@/lib/links";
 import Image from "next/image";
 import Link from "next/link";
-import { byCollection, COLLECTIONS, PRODUCTS, stockState, type Product } from "@/lib/products";
+import { byCollection, COLLECTIONS, getProduct, PRODUCTS, stockState, type Product } from "@/lib/products";
 import { fmtRON, PROOF } from "@/lib/site";
 import { breadcrumbLd, JsonLd, productLd } from "@/lib/jsonld";
 import { Gallery } from "./Gallery";
@@ -9,9 +12,21 @@ import { BuyBox } from "./BuyBox";
 import { FitGuide } from "../FitGuide";
 import { StockBadge } from "../StockBadge";
 import { CapPlaceholder } from "../CapPlaceholder";
+import { useEnhanced } from "../Enhanced";
+import { ProductStage } from "./ProductStage";
 
-/** The whole product page body. Sync, so it also renders in the single-file preview. */
-export function ProductView({ product }: { product: Product }) {
+/** The whole product page body. Holds the selected colourway so swatches can swap it in place. */
+export function ProductView({ product: initial, modelUrl }: { product: Product; modelUrl?: string }) {
+  const [product, setProduct] = useState(initial);
+  useEffect(() => setProduct(initial), [initial]);
+  const enhanced = useEnhanced() && product.hasPhoto;
+  const select = (slug: string) => {
+    const next = getProduct(slug);
+    if (!next || next.slug === product.slug) return;
+    setProduct(next);
+    replaceCap(slug);
+    document.title = `${next.title} | GRIM`;
+  };
   const siblings = byCollection(product.collection);
   const col = COLLECTIONS[product.collection];
   const others = PRODUCTS.filter((p) => p.slug !== product.slug && p.hasPhoto).slice(0, 4);
@@ -26,33 +41,62 @@ export function ProductView({ product }: { product: Product }) {
       <JsonLd data={productLd(product)} />
       <JsonLd data={breadcrumbLd(crumbs)} />
 
-      <div className="gutter mx-auto max-w-[1600px] pt-20 md:pt-24">
-        <nav aria-label="Breadcrumb" className="font-mono text-[12px] uppercase tracking-[0.1em] text-white/70">
-          <ol className="flex flex-wrap gap-2">
-            {crumbs.map((c, k) => (
-              <li key={c.path} className="flex gap-2">
-                {k < crumbs.length - 1 ? (
-                  <>
-                    <Link href={k === 0 ? href.home : href.caps} className="link-underline">{c.name}</Link>
-                    <span aria-hidden>/</span>
-                  </>
-                ) : (
-                  <span aria-current="page" className="text-white">{c.name}</span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
-      </div>
+      {enhanced ? (
+        <ProductStage
+          product={product}
+          siblings={siblings}
+          onSelect={select}
+          modelUrl={modelUrl}
+          crumbs={
+            <nav aria-label="Breadcrumb" className="pointer-events-auto font-mono text-[12px] uppercase tracking-[0.1em] text-white/70">
+              <ol className="flex flex-wrap gap-2">
+                {crumbs.map((c, k) => (
+                  <li key={c.path} className="flex gap-2">
+                    {k < crumbs.length - 1 ? (
+                      <>
+                        <Link href={k === 0 ? href.home : href.caps} className="link-underline">{c.name}</Link>
+                        <span aria-hidden>/</span>
+                      </>
+                    ) : (
+                      <span aria-current="page" className="text-white">{c.name}</span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          }
+        />
+      ) : (
+        <>
+          <div className="gutter mx-auto max-w-[1600px] pt-20 md:pt-24">
+            <nav aria-label="Breadcrumb" className="font-mono text-[12px] uppercase tracking-[0.1em] text-white/70">
+              <ol className="flex flex-wrap gap-2">
+                {crumbs.map((c, k) => (
+                  <li key={c.path} className="flex gap-2">
+                    {k < crumbs.length - 1 ? (
+                      <>
+                        <Link href={k === 0 ? href.home : href.caps} className="link-underline">{c.name}</Link>
+                        <span aria-hidden>/</span>
+                      </>
+                    ) : (
+                      <span aria-current="page" className="text-white">{c.name}</span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </div>
 
-      <article className="gutter mx-auto mt-4 grid max-w-[1600px] gap-8 md:mt-8 md:grid-cols-[1.3fr_1fr] md:gap-14" aria-label={product.title}>
-        <div className="-mx-[var(--gutter)] md:mx-0">
-          <Gallery product={product} />
-        </div>
-        <div className="md:sticky md:top-24 md:self-start">
-          <BuyBox product={product} siblings={siblings} />
-        </div>
-      </article>
+          <article className="gutter mx-auto mt-4 grid max-w-[1600px] gap-8 md:mt-8 md:grid-cols-[1.3fr_1fr] md:gap-14" aria-label={product.title}>
+            <div className="-mx-[var(--gutter)] md:mx-0">
+              <Gallery product={product} />
+            </div>
+            <div className="md:sticky md:top-24 md:self-start">
+              <BuyBox product={product} siblings={siblings} />
+            </div>
+          </article>
+        </>
+      )}
 
       {product.collection === "snake-skin" && (
         <section className="gutter mx-auto mt-24 max-w-[1600px] md:mt-36" aria-label="Collection hook">

@@ -11,3 +11,8 @@ export const href = {
 };
 
 export const asset = (file: string) => (flat ? `assets/${file}` : `/assets/${file}`);
+
+/** Update the address bar to another colorway without a page load (product page color swap). */
+export const replaceCap = (slug: string) => {
+  if (typeof window !== "undefined") window.history.replaceState(null, "", href.cap(slug));
+};

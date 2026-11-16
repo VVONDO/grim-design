@@ -7,6 +7,11 @@ import { Numbers } from "@/components/home/Numbers";
 import { Community } from "@/components/home/Community";
 import { FitGuide } from "@/components/FitGuide";
 import { ShippingInfo } from "@/components/ShippingInfo";
+import { Enhanced } from "@/components/Enhanced";
+import { HomeStage } from "@/components/home/HomeStage";
+import { Hero3D } from "@/components/home/Hero3D";
+import { Story3D } from "@/components/home/Story3D";
+import { artistPhotos, capModelUrl } from "@/lib/server-assets";
 
 export const metadata: Metadata = {
   title: { absolute: "GRIM: Streetwear Caps Worn by Rappers | wear your shadow" },
@@ -19,9 +24,22 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Manifesto />
-      <Story />
+      {/* Desktop with motion: 3D hero + story on one shared canvas. Phones / reduced motion: the static versions. */}
+      <Enhanced
+        fallback={
+          <>
+            <Hero />
+            <Manifesto />
+            <Story />
+          </>
+        }
+      >
+        <HomeStage modelUrl={capModelUrl()} artists={artistPhotos()}>
+          <Hero3D />
+          <Manifesto />
+          <Story3D />
+        </HomeStage>
+      </Enhanced>
       <Collections />
       <Numbers />
       <section className="gutter mx-auto max-w-[1600px] py-20 md:py-32" aria-label="Fit and delivery">

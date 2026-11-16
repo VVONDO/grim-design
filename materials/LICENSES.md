@@ -20,6 +20,8 @@ Regula: **UNKNOWN nu e o valoare, e o sarcină.** Nimic nu intră pe site fără
 | Font detalii site: **IBM Plex Mono** | Google Fonts | SIL OFL 1.1 | da | nu | ✅ |
 | Font text site: **Archivo** | Google Fonts | SIL OFL 1.1 | da | nu | ✅ |
 | Animații: **GSAP** + **Lenis** | npm | GSAP Standard License (gratuit, inclusiv comercial) / MIT | da | nu | ✅ |
+| Decupaje șepci (`site/public/assets/*-cutout.webp`) | derivate din pozele „GRIM FUNDAL NEGRU EDIT” de mai sus | ca sursa | ⚠️ de confirmat | ca sursa | ⚠️ doar în prototip |
+| 3D: **three.js**, **React Three Fiber**, **drei**, **postprocessing** | npm | MIT / Zlib | da | nu | ✅ |
 | Texte produse | scrise de GRIM | ale noastre | da | nu | ✅ (materialul nu se publică — decizia GRIM) |
 
 ## Prototipul `site/` (15 nov 2026)

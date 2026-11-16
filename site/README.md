@@ -27,6 +27,22 @@ To open it on a phone on the same Wi-Fi: `npm start -- -H 0.0.0.0`, then open `h
 
 `node preview/build.mjs` builds the whole site into one self-contained HTML file (`preview/dist/grim-preview.html`, about 4.7 MB). It inlines images, CSS and JS; pages become `#caps`, `#cap-snake-skin-red`, `#checkout`. It uses the same components as the real site, with small stand-ins for Next.js pieces (`preview/stubs/`). This is the version published as a private claude.ai page for viewing on an iPad. Fonts load from Google Fonts.
 
+## 3D version (desktop)
+
+On screens 768px and wider, with motion allowed, the hero, the story and the product page run in 3D (React Three Fiber + drei, GSAP ScrollTrigger, Lenis). Phones and `prefers-reduced-motion` get the earlier static versions. Built and checked at 1440px only.
+
+- **Hero** (`components/home/Hero3D.tsx`, scene in `components/three/HomeCanvas.tsx`): pinned. Spotlight comes up on a floating cap in front of a giant "GRIM"; scrolling turns the cap, pushes in on the embroidery, pulls back through the six SNAKE SKIN colors and ends on "Shop now".
+- **Story** (`components/home/Story3D.tsx`): pinned. Typed line, a cap thrown onto the first artist card with a red flash (the only thing that blooms), the count-up to 18 with cards drifting in depth, then a row of the six caps that tilt toward the cursor.
+- **Product page** (`components/product/ProductStage.tsx`, `components/three/ViewerCanvas.tsx`): drag to rotate through the shots, scroll to zoom into three hotspots, swatches swap the color in place, "Add to cart" flies the cap into the cart icon.
+- One canvas per page. The home canvas sleeps when neither pinned section is on screen.
+
+There is no 3D model of the cap, so depth is faked with photos on planes. Drop a model at `public/models/cap.glb` and both scenes use it instead (this path is untested: no model exists yet).
+
+**Placeholders added in this version**
+- **Artist photos:** none are cleared for use (see `../materials/LICENSES.md`), so the story cards show names with "photo pending". Add `public/artists/young-thug.webp`, `future.webp`, `quavo.webp`, `offset.webp` to show real photos. Only add photos you have the rights to.
+- **Hotspot positions** (`lib/experience.ts`) are placed by eye on each close-up. The strap is at the back and out of frame in every photo: its pin marks where it sits.
+- **Cap cutouts** (`public/assets/*-cutout.webp`, made by `scripts/build-cutouts.py`) are automatic. The blue one has a soft dark halo because the cap is nearly black on a black background. Proper product cutouts would look sharper.
+
 ## What's on the site
 
 | Route | What it is |
